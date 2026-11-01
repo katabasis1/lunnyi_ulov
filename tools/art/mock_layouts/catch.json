@@ -1,0 +1,22 @@
+{
+  "_doc": "Экран поимки (GDD §5.5) поверх раскладки fishing: затемнение, карточка улова по центру телефонного кадра, существо ×2 в окне, камень редкости в гнезде, имя/размер/редкость/цена на пергаменте, штамп «Новое!» (узел наклонён на −12° в Godot = rotate 12 здесь). Текст ВРЕМЕННЫЙ (шрифт — Э5.1), строки из GDD §5.5, §6, §13. Ориентир для сцены карточки (Э2.5).",
+  "canvas": [640, 640],
+  "phone_x": 140,
+  "layers": [
+    {"include": "fishing"},
+    {"veil": [4, 6, 12, 165]},
+    {"id": "ui_catch_card_frame", "at": [204, 150]},
+    {"id": "cr_moon_roach", "at": [320, 253], "scale": 2, "center": true},
+    {"id": "ui_rarity_gems", "frame": 0, "at": [320, 167], "center": true},
+    {"text": "Лунная плотва", "at": [320, 350], "size": 13, "bold": true, "align": "center", "color": "#2e1f14"},
+    {"text": "18 см · Обычная", "at": [320, 371], "size": 11, "align": "center", "color": "#4a3220"},
+    {"id": "ui_icon_coin", "at": [302, 400], "center": true},
+    {"text": "+5", "at": [313, 392], "size": 13, "bold": true, "color": "#2e1f14"},
+    {"id": "ui_catch_stamps", "frame": 0, "at": [377, 412], "rotate": 12, "center": true},
+    {"text": "Новое!", "at": [377, 412], "size": 12, "bold": true, "rotate": 12, "color": "#2f8a63"},
+    {"id": "ui_icon_pearl", "at": [154, 12]},
+    {"text": "3", "at": [173, 12], "size": 11, "bold": true, "color": "#e8f2ff"},
+    {"id": "ui_icon_coin", "at": [196, 12]},
+    {"text": "124", "at": [215, 12], "size": 11, "bold": true, "color": "#e8f2ff"}
+  ]
+}

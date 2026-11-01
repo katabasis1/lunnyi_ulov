@@ -1,0 +1,52 @@
+GIMP Palette
+Name: Velmor-48 (Lunnyi Ulov)
+Columns: 12
+#
+  4   6  12	night_0
+  8  17  31	night_1
+ 12  27  51	night_2
+ 16  42  79	night_3
+ 21  56 108	night_4
+ 27  74 140	night_5
+ 37  96 173	night_6
+ 52 120 204	night_7
+ 75 151 227	night_8
+120 196 240	night_9
+175 224 241	night_10
+ 58  74  94	stone_0
+ 87 105 127	stone_1
+127 147 170	stone_2
+179 195 212	stone_3
+ 11  26  28	forest_0
+ 18  41  42	forest_1
+ 28  61  58	forest_2
+ 42  90  80	forest_3
+ 27  42  20	moss_0
+ 44  66  25	moss_1
+ 72  96  31	moss_2
+110 130  38	moss_3
+163 171  63	moss_4
+ 46  31  20	wood_0
+ 74  48  32	wood_1
+107  69  42	wood_2
+143  98  55	wood_3
+184 138  82	wood_4
+122  46  16	lantern_0
+176  74  20	lantern_1
+214 111  24	lantern_2
+240 154  44	lantern_3
+255 201  90	lantern_4
+255 241 184	lantern_5
+ 42   8  16	crimson_0
+ 92  16  32	crimson_1
+154  30  44	crimson_2
+216  67  74	crimson_3
+ 30  20  51	ghost_0
+ 59  42  99	ghost_1
+106  84 163	ghost_2
+169 147 224	ghost_3
+ 47 138  99	jade_0
+ 95 211 154	jade_1
+168 105  74	skin_0
+224 169 130	skin_1
+244 248 255	white_0

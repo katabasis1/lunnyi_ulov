@@ -1,0 +1,17 @@
+{
+  "_doc": "Раскладка «Лунного берега» для макета. at = левый верхний угол в координатах панорамы 640x640. Те же числа пойдут в сцену Godot (Э3.2). phone_x — левый край телефонного кадра 360 px.",
+  "canvas": [640, 640],
+  "phone_x": 140,
+  "layers": [
+    {"id": "env_shore_sky", "at": [0, 0]},
+    {"id": "env_moon_full", "at": [392, 64]},
+    {"id": "env_shore_clouds", "at": [0, 92]},
+    {"id": "env_shore_water", "at": [0, 340]},
+    {"id": "env_shore_castle", "at": [0, 85]},
+    {"id": "env_shore_cliffs", "at": [0, 50]},
+    {"id": "env_shore_pier", "at": [130, 330]},
+    {"id": "char_irven_idle", "at": [262, 300]},
+    {"id": "char_cat_idle", "at": [235, 366]},
+    {"id": "env_shore_foreground", "at": [0, 400]}
+  ]
+}
