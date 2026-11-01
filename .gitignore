@@ -1,0 +1,19 @@
+# Godot 4
+.godot/
+/android/
+
+# Экспортные сборки (Web-архив для Яндекса не коммитим)
+export/
+exports/
+build/
+
+# Python-кэш инструментов
+__pycache__/
+*.pyc
+
+# Временные файлы аудио-рендера
+tools/audio/_render/
+
+# ОС
+.DS_Store
+Thumbs.db
