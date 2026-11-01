@@ -12,3 +12,7 @@
 | Референсы пользователя | Pod: references/ (вне репозитория) | Сторонние авторы | чужие права | — | **никогда** (только настроение) |
 | Навык humanizer-ru (документ) | docs/text/vendor/humanizer-ru_SKILL.md | github.com/Vladimir-Human/humanizer-ru | MIT, © 2026 Vladimir Antonov | копия без изменений | нет (инструмент для текстов) |
 | Навык humanizer (документ) | docs/text/vendor/humanizer-en_SKILL.md | github.com/blader/humanizer | MIT, © 2025 Siqi Chen | копия без изменений | нет (инструмент для текстов) |
+| Временный арт, пакеты 1–4 (Э0.4) | art/** | Сгенерировано ИИ для проекта, доводка `tools/art/process_art.py` | собственное | квантование в палитру Velmor-48, обрезка, ресайз | да (временный, до финала ChatGPT) |
+| Макеты экранов | docs/art_mocks/*.png | Собраны `tools/art/compose_mock.py` из временного арта; текст — Noto Sans (OFL 1.1), запасные знаки — DejaVu Sans (свободная лицензия Bitstream Vera) | собственное | — | нет (референс) |
+| Музыка, эмбиент, SFX — пробный набор Э0.5 | audio/** | Синтез агентом с нуля: `tools/audio/` (numpy/scipy → OGG), без сэмплов и чужих мелодий | собственное | — | да (пробные, до утверждения) |
+| MP3-превью звука | Pod: previews/audio/ (вне репозитория) | Сведены `tools/audio/preview.py` из OGG проекта | собственное | — | нет (для прослушивания) |

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "sample_rate": 44100,
+  "notes": "Реестр звука. Поля: score/part/seed — что рендерить; out — путь OGG от корня проекта; norm — нормализация (lufs | peak_db | group); bus — шина в Godot. Описание — docs/AUDIO_BRIEF.md.",
+  "groups": {
+    "music_shore_night": {
+      "ref": ["music_shore_night_base", "music_shore_night_melody"],
+      "lufs": -18.0,
+      "peak_mix": ["music_shore_night_base", "music_shore_night_melody", "music_shore_night_tension"],
+      "ceiling_db": -1.0
+    }
+  },
+  "assets": [
+    {"id": "music_shore_night_base",    "kind": "music",    "bus": "Music",    "score": "music_shore_night", "part": "base",    "seed": 1, "loop": true,  "channels": 2, "ogg_q": 3, "norm": {"group": "music_shore_night"}, "out": "audio/music/shore_night/music_shore_night_base.ogg",    "status": "пробный"},
+    {"id": "music_shore_night_melody",  "kind": "music",    "bus": "Music",    "score": "music_shore_night", "part": "melody",  "seed": 2, "loop": true,  "channels": 2, "ogg_q": 3, "norm": {"group": "music_shore_night"}, "out": "audio/music/shore_night/music_shore_night_melody.ogg",  "status": "пробный"},
+    {"id": "music_shore_night_tension", "kind": "music",    "bus": "Music",    "score": "music_shore_night", "part": "tension", "seed": 3, "loop": true,  "channels": 2, "ogg_q": 3, "norm": {"group": "music_shore_night"}, "out": "audio/music/shore_night/music_shore_night_tension.ogg", "status": "пробный"},
+
+    {"id": "stinger_catch_common",    "kind": "stinger", "bus": "Music", "score": "stingers_catch", "part": "common",    "seed": 1, "loop": false, "channels": 2, "ogg_q": 4, "norm": {"lufs": -21.0}, "out": "audio/music/stingers/stinger_catch_common.ogg",    "status": "пробный"},
+    {"id": "stinger_catch_uncommon",  "kind": "stinger", "bus": "Music", "score": "stingers_catch", "part": "uncommon",  "seed": 2, "loop": false, "channels": 2, "ogg_q": 4, "norm": {"lufs": -20.0}, "out": "audio/music/stingers/stinger_catch_uncommon.ogg",  "status": "пробный"},
+    {"id": "stinger_catch_rare",      "kind": "stinger", "bus": "Music", "score": "stingers_catch", "part": "rare",      "seed": 3, "loop": false, "channels": 2, "ogg_q": 4, "norm": {"lufs": -19.0}, "out": "audio/music/stingers/stinger_catch_rare.ogg",      "status": "пробный"},
+    {"id": "stinger_catch_legendary", "kind": "stinger", "bus": "Music", "score": "stingers_catch", "part": "legendary", "seed": 4, "loop": false, "channels": 2, "ogg_q": 4, "norm": {"lufs": -17.0}, "out": "audio/music/stingers/stinger_catch_legendary.ogg", "status": "пробный"},
+    {"id": "stinger_catch_lunar",     "kind": "stinger", "bus": "Music", "score": "stingers_catch", "part": "lunar",     "seed": 5, "loop": false, "channels": 2, "ogg_q": 4, "norm": {"lufs": -18.0}, "out": "audio/music/stingers/stinger_catch_lunar.ogg",     "status": "пробный"},
+
+    {"id": "amb_shore_night", "kind": "ambience", "bus": "Ambience", "score": "amb_shore_night", "part": "main", "seed": 1, "loop": true, "channels": 2, "ogg_q": 2, "norm": {"lufs": -27.0}, "out": "audio/ambience/amb_shore_night.ogg", "status": "пробный"},
+
+    {"id": "sfx_cast_01",     "kind": "sfx", "bus": "SFX", "score": "sfx_fishing", "part": "cast",      "seed": 1, "loop": false, "channels": 1, "ogg_q": 4, "norm": {"peak_db": -5.0}, "out": "audio/sfx/fishing/sfx_cast_01.ogg",   "status": "пробный"},
+    {"id": "sfx_cast_02",     "kind": "sfx", "bus": "SFX", "score": "sfx_fishing", "part": "cast",      "seed": 2, "loop": false, "channels": 1, "ogg_q": 4, "norm": {"peak_db": -5.0}, "out": "audio/sfx/fishing/sfx_cast_02.ogg",   "status": "пробный"},
+    {"id": "sfx_cast_03",     "kind": "sfx", "bus": "SFX", "score": "sfx_fishing", "part": "cast",      "seed": 3, "loop": false, "channels": 1, "ogg_q": 4, "norm": {"peak_db": -5.0}, "out": "audio/sfx/fishing/sfx_cast_03.ogg",   "status": "пробный"},
+    {"id": "sfx_splash_01",   "kind": "sfx", "bus": "SFX", "score": "sfx_fishing", "part": "splash",    "seed": 1, "loop": false, "channels": 1, "ogg_q": 4, "norm": {"peak_db": -3.0}, "out": "audio/sfx/fishing/sfx_splash_01.ogg", "status": "пробный"},
+    {"id": "sfx_splash_02",   "kind": "sfx", "bus": "SFX", "score": "sfx_fishing", "part": "splash",    "seed": 2, "loop": false, "channels": 1, "ogg_q": 4, "norm": {"peak_db": -3.0}, "out": "audio/sfx/fishing/sfx_splash_02.ogg", "status": "пробный"},
+    {"id": "sfx_splash_03",   "kind": "sfx", "bus": "SFX", "score": "sfx_fishing", "part": "splash",    "seed": 3, "loop": false, "channels": 1, "ogg_q": 4, "norm": {"peak_db": -3.0}, "out": "audio/sfx/fishing/sfx_splash_03.ogg", "status": "пробный"},
+    {"id": "sfx_bite_01",     "kind": "sfx", "bus": "SFX", "score": "sfx_fishing", "part": "bite",      "seed": 1, "loop": false, "channels": 1, "ogg_q": 4, "norm": {"peak_db": -3.0}, "out": "audio/sfx/fishing/sfx_bite_01.ogg",   "status": "пробный"},
+    {"id": "sfx_bite_02",     "kind": "sfx", "bus": "SFX", "score": "sfx_fishing", "part": "bite",      "seed": 2, "loop": false, "channels": 1, "ogg_q": 4, "norm": {"peak_db": -3.0}, "out": "audio/sfx/fishing/sfx_bite_02.ogg",   "status": "пробный"},
+    {"id": "sfx_reel_loop",   "kind": "sfx", "bus": "SFX", "score": "sfx_fishing", "part": "reel_loop", "seed": 1, "loop": true,  "channels": 1, "ogg_q": 4, "norm": {"peak_db": -7.0}, "out": "audio/sfx/fishing/sfx_reel_loop.ogg", "status": "пробный"},
+    {"id": "sfx_ui_tap_01",   "kind": "sfx", "bus": "UI",  "score": "sfx_ui",      "part": "tap",       "seed": 1, "loop": false, "channels": 1, "ogg_q": 4, "norm": {"peak_db": -10.0}, "out": "audio/sfx/ui/sfx_ui_tap_01.ogg",     "status": "пробный"},
+    {"id": "sfx_ui_tap_02",   "kind": "sfx", "bus": "UI",  "score": "sfx_ui",      "part": "tap",       "seed": 2, "loop": false, "channels": 1, "ogg_q": 4, "norm": {"peak_db": -10.0}, "out": "audio/sfx/ui/sfx_ui_tap_02.ogg",     "status": "пробный"},
+    {"id": "sfx_ui_tap_03",   "kind": "sfx", "bus": "UI",  "score": "sfx_ui",      "part": "tap",       "seed": 3, "loop": false, "channels": 1, "ogg_q": 4, "norm": {"peak_db": -10.0}, "out": "audio/sfx/ui/sfx_ui_tap_03.ogg",     "status": "пробный"}
+  ]
+}

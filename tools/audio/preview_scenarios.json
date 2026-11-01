@@ -1,0 +1,60 @@
+{
+  "notes": "Сценарии прослушивания. Громкость — линейная амплитуда, точки [время_с, значение], между точками линейно (так AudioDirector будет твинить volume_linear). Шины: громкости по умолчанию из docs/AUDIO_BRIEF.md (§6).",
+  "bus_defaults": {"Music": 0.7, "Ambience": 0.8, "SFX": 1.0, "UI": 0.8},
+  "scenarios": {
+    "demo_scenario": {
+      "title": "Минута у воды: тишина → мелодия → заброс → поклёвка → вываживание → поимка редкой → снова тишина → мелодия; на 120 с — стык петли",
+      "length": 130.0,
+      "loops": {
+        "base":    {"file": "audio/music/shore_night/music_shore_night_base.ogg",    "bus": "Music",    "vol": [[0, 0], [3, 1], [126, 1], [130, 0]]},
+        "melody":  {"file": "audio/music/shore_night/music_shore_night_melody.ogg",  "bus": "Music",    "vol": [[0, 0], [29, 0], [31, 1], [58.6, 1], [60.6, 0], [89, 0], [91, 1], [126, 1], [130, 0]]},
+        "tension": {"file": "audio/music/shore_night/music_shore_night_tension.ogg", "bus": "Music",    "vol": [[0, 0], [58.6, 0], [59.4, 1], [68.3, 1], [69.8, 0]]},
+        "amb":     {"file": "audio/ambience/amb_shore_night.ogg",                    "bus": "Ambience", "vol": [[0, 0], [2, 1], [126, 1], [130, 0]]},
+        "reel":    {"file": "audio/sfx/fishing/sfx_reel_loop.ogg",                   "bus": "SFX",      "vol": [[0, 0], [58.7, 0], [58.8, 0.8], [62.4, 0.8], [62.5, 0], [63.4, 0], [63.5, 0.8], [68.1, 0.8], [68.2, 0]],
+                    "rate": [[58.7, 1.0], [62.4, 1.15], [63.5, 0.9], [68.1, 1.2]]}
+      },
+      "duck": {"bus": "Music", "points": [[68.15, 1], [68.3, 0.4], [72.5, 0.4], [74.5, 1]]},
+      "events": [
+        [49.6, "audio/sfx/ui/sfx_ui_tap_01.ogg", 1.0, 1.0],
+        [50.0, "audio/sfx/fishing/sfx_cast_01.ogg", 1.0, 1.0],
+        [51.05, "audio/sfx/fishing/sfx_splash_01.ogg", 0.9, 1.0],
+        [58.0, "audio/sfx/fishing/sfx_bite_01.ogg", 1.0, 1.0],
+        [68.2, "audio/sfx/fishing/sfx_splash_02.ogg", 1.0, 0.85],
+        [68.3, "audio/music/stingers/stinger_catch_rare.ogg", 1.0, 1.0],
+        [75.5, "audio/sfx/ui/sfx_ui_tap_02.ogg", 1.0, 1.0],
+        [77.0, "audio/sfx/ui/sfx_ui_tap_03.ogg", 1.0, 1.04]
+      ]
+    },
+    "stingers_all": {
+      "title": "Фразы поимки по редкости: обычная, необычная, редкая, легендарная, лунная",
+      "length": 34.0,
+      "loops": {},
+      "events": [
+        [0.5, "audio/music/stingers/stinger_catch_common.ogg", 1.0, 1.0],
+        [4.0, "audio/music/stingers/stinger_catch_uncommon.ogg", 1.0, 1.0],
+        [8.5, "audio/music/stingers/stinger_catch_rare.ogg", 1.0, 1.0],
+        [14.5, "audio/music/stingers/stinger_catch_legendary.ogg", 1.0, 1.0],
+        [25.5, "audio/music/stingers/stinger_catch_lunar.ogg", 1.0, 1.0]
+      ]
+    },
+    "sfx_all": {
+      "title": "Пробные SFX: заброс + всплеск ×2, поклёвка ×2, катушка, всплеск, тапы ×3",
+      "length": 17.5,
+      "loops": {
+        "reel": {"file": "audio/sfx/fishing/sfx_reel_loop.ogg", "bus": "SFX", "vol": [[0, 0], [9.0, 0], [9.05, 0.8], [12.0, 0.8], [12.05, 0]], "rate": [[9.0, 0.9], [12.0, 1.2]]}
+      },
+      "events": [
+        [0.3, "audio/sfx/fishing/sfx_cast_01.ogg", 1.0, 1.0],
+        [1.35, "audio/sfx/fishing/sfx_splash_01.ogg", 1.0, 1.0],
+        [3.0, "audio/sfx/fishing/sfx_cast_02.ogg", 1.0, 1.0],
+        [4.05, "audio/sfx/fishing/sfx_splash_02.ogg", 1.0, 1.0],
+        [6.0, "audio/sfx/fishing/sfx_bite_01.ogg", 1.0, 1.0],
+        [7.6, "audio/sfx/fishing/sfx_bite_02.ogg", 1.0, 1.0],
+        [12.4, "audio/sfx/fishing/sfx_splash_03.ogg", 1.0, 0.9],
+        [14.2, "audio/sfx/ui/sfx_ui_tap_01.ogg", 1.0, 1.0],
+        [14.8, "audio/sfx/ui/sfx_ui_tap_02.ogg", 1.0, 1.0],
+        [15.4, "audio/sfx/ui/sfx_ui_tap_03.ogg", 1.0, 1.0]
+      ]
+    }
+  }
+}

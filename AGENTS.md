@@ -26,8 +26,9 @@
 ## 5. Тексты (PLAN.md §2.7)
 - Русские тексты в игре — через правила humanizer-ru, английские — через humanizer (`docs/text/vendor/`). Голоса и запреты — `docs/TEXT_GUIDE.md`. Отметка — `docs/text/TEXT_LOG.md`.
 
-## 6. Музыка и звуки (PLAN.md §2.8)
+## 6. Музыка и звуки (PLAN.md §2.8, `docs/AUDIO_BRIEF.md`)
 - Пишет агент: синтез на Python в `tools/audio/` → OGG. Бесшовные петли со слоями. Никаких сэмплов чужих треков.
+- Новый звук: партитура в `tools/audio/scores/` → запись в `tools/audio/audio_assets.json` → `python3 tools/audio/build_audio.py <id>` → проверка `report.md`. Сборка детерминирована: повторный запуск даёт те же байты.
 
 ## 7. Качество и контент
 - Каждая фича проходит чек-лист «fancy & juicy» (PLAN.md §3) и требования Яндекс Игр (PLAN.md §4).
