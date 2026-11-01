@@ -62,6 +62,26 @@
 | `relic_medallion` | Медальон с портретом лорда | `art/relics/relic_medallion.png` | 32×32 | 1024×1024 | 3 | промпт выдан |
 | `relic_spyglass` | Подзорная труба смотрителя | `art/relics/relic_spyglass.png` | 32×32 | 1024×1024 | 3 | промпт выдан |
 | `sil_*` (15 шт.) | Силуэты существ для «Книги вод» | `art/creatures/silhouettes/<имя>.png` | как у существа | — | 3 | производный, промпт не нужен |
+| `char_brook_idle` | Брук стоит (idle) | `art/characters/brook/brook_idle.png` | 96×128 | 1024×1536 | 4 | промпт выдан |
+| `char_elsa_idle` | Эльса (idle) | `art/characters/elsa/elsa_idle.png` | 96×128 | 1024×1536 | 4 | промпт выдан |
+| `env_shop_back` | Лавка Брука: задняя стена с окном | `art/environment/shop/shop_back.png` | 640×360 | 1536×1024 | 4 | промпт выдан |
+| `env_shop_counter` | Лавка Брука: прилавок | `art/environment/shop/shop_counter.png` | 640×128 | 1536×1024 | 4 | промпт выдан |
+| `env_moat_castle` | Ров Вельмора: стены замка | `art/environment/moat/moat_castle.png` | 640×360 | 1536×1024 | 4 | промпт выдан |
+| `env_moat_water` | Ров Вельмора: вода | `art/environment/moat/moat_water.png` | 640×300 | 1536×1024 | 4 | промпт выдан |
+| `env_moat_ledge` | Ров Вельмора: обломки ворот (место рыбалки) | `art/environment/moat/moat_ledge.png` | 256×160 | 1536×1024 | 4 | промпт выдан |
+| `prop_boat` | Лодка (починенная) | `art/props/boat/boat.png` | 128×48 | 1536×1024 | 4 | промпт выдан |
+| `env_moat_foreground` | Ров Вельмора: передний план | `art/environment/moat/moat_foreground.png` | 640×240 | 1536×1024 | 4 | промпт выдан |
+| `ui_bait_icons` | Наживки, лист из 5 кадров | `art/ui/icons/baits.png` | 160×32 | 1536×1024 | 4 | промпт выдан |
+| `ui_upgrade_icons` | Улучшения, лист из 6 кадров | `art/ui/icons/upgrades.png` | 192×32 | 1536×1024 | 4 | промпт выдан |
+| `ui_nav_icons` | Иконки навигации, лист из 5 кадров | `art/ui/icons/nav.png` | 160×32 | 1536×1024 | 4 | промпт выдан |
+| `ui_panel_frame` | Рамка панели (9-slice) | `art/ui/frames/panel.png` | 96×96 | 1024×1024 | 4 | промпт выдан |
+| `ui_button` | Кнопка, 2 состояния | `art/ui/frames/button.png` | 128×24 | 1536×1024 | 4 | промпт выдан |
+| `ui_action_button` | Большая кнопка действия | `art/ui/frames/action_button.png` | 64×64 | 1024×1024 | 4 | промпт выдан |
+| `ui_tension_frame` | Рамка шкалы натяжения | `art/ui/frames/tension_frame.png` | 20×160 | 1024×1536 | 4 | промпт выдан |
+| `ui_moon_phases` | 8 фаз луны, HUD | `art/ui/icons/moon_phases.png` | 128×16 | 1536×1024 | 4 | промпт выдан |
+| `ui_moon_phases_lg` | 8 фаз луны, крупно (тот же исходник) | `art/ui/icons/moon_phases_lg.png` | 256×32 | — | 4 | промпт выдан |
+| `ui_logo_emblem` | Логотип: эмблема без текста | `art/ui/logo/logo_emblem.png` | 160×128 | 1024×1024 | 4 | промпт выдан |
+| кот в лодке | Уголёк на носу лодки | — (`char_cat_idle` поверх `prop_boat`) | — | — | 4 | отдельный ассет не нужен (D-026) |
 
 ---
 
@@ -776,5 +796,373 @@ Style: 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing,
 Palette: brass gold, bronze, dark leather brown, green patina, pale blue, navy. No red.
 Mood: quiet, nostalgic, cozy dark fantasy; a precious relic from a drowned castle.
 Forbidden: text, letters, logos, watermarks, blood, religious symbols, crosses.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+## Пакет 4 — Брук, Эльса, лавка, Ров Вельмора, иконки, UI, фазы луны, логотип (Э0.4.5)
+
+NPC — холст 96×128, как у Ирвена. Лавка и ров — панорамы шириной 640, как «Лунный берег»; небо, луна и облака во рву общие с берегом, поэтому в слоях рва их нет (D-026).
+**Эльса (`char_elsa_idle`) — на зелёном фоне `#00FF00`**, остальные на пурпурном.
+**Без надписей.** Рамки, кнопки и логотип рисуются без текста: надписи делает `Label` (локализация, генераторы портят кириллицу). Логотип — только эмблема, название под ней (D-027).
+**Листы иконок** (наживки, улучшения, навигация, фазы луны, кнопка): предметы с широкими промежутками, скрипт сам находит их и режет; порядок — по строкам слева направо, как в промпте.
+`ui_moon_phases_lg` делается из того же исходника, что `ui_moon_phases`. Временный лист фаз агент строит из готовой луны `env_moon_full` (D-028); пришёл финал луны — лист фаз пересобирается.
+Кот в лодке — отдельный ассет не нужен: тот же `char_cat_idle` на носу `prop_boat` (D-026).
+
+### `char_brook_idle` — Брук стоит (idle)
+Холст 96×128, привязка — низ по центру. Рисуется в полный рост: в лавке прилавок `env_shop_counter` — отдельный слой поверх ног. Тёплый свет свечей слева, холодный ободок луны из окна справа.
+
+```
+Create a pixel art game sprite of Brook, a gnome trader who buys fish and odd things in a hut carved into a sea cliff. Portrait image 1024x1536.
+
+Pose: standing, full figure, front three-quarter view turned slightly to the left, looking at the viewer with a sly friendly grin. One hand on his round belly, the other raised holding a small brass magnifying loupe, as if about to appraise a fish. Short and stocky: big head, broad shoulders, short legs, heavy boots.
+Look: round brass goggles pushed up on his forehead; a bushy ginger beard with grey streaks, its end tied with a brass bead; a big round nose and rosy cheeks; a small knitted dark blue cap; rolled-up sleeves of a moss-green shirt; a thick brown leather apron with brass buckles and pockets full of small tools; a coin pouch on the belt.
+Light: warm amber candle light from the lower left on his face, beard and apron; a thin cold blue moonlight rim on the right edges from a window behind him.
+
+Single isolated game sprite, the whole figure visible from the cap to the boots and centered, nothing else in the image: no counter, no shelves, no floor.
+Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow on the ground, no floor, no gradient.
+Big clear silhouette with large pixel clusters: the sprite will be downscaled to 96x128 pixels, so avoid tiny details.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: limited, about 48 colors. Warm browns, leather, brass and amber, a ginger beard, peach skin; deep night blues and navy in the shadows; a touch of moss green. No crimson, no bright red.
+Lighting: warm candle key light from the lower left, cold blue moon rim from the upper right; shadows go into deep navy, never pure black.
+Mood: cozy, funny and kind-hearted shopkeeper of a cozy dark fantasy world, like a 1980s fantasy book illustration rendered as a pixel art game.
+Forbidden: text, letters, logos, watermarks, blood, skulls, crosses, religious symbols, weapons.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `char_elsa_idle` — Эльса (idle)
+Холст 96×128, привязка — низ по центру, смотрит влево (на Ирвена: она появляется у края причала справа). Ряд ghost. **Фон зелёный**, не пурпурный: пурпур съест края лаванды (как у призрачного осётра). Полупрозрачность и колыхание — в Godot.
+
+```
+Create a pixel art game sprite of Elsa, the gentle ghost of the old castle's key keeper. Portrait image 1024x1536.
+
+Pose: floating upright just above the ground, full figure, three-quarter view turned to the LEFT, head slightly bowed, looking down to the left with a sad, calm, kind expression. Both hands folded in front of her waist, holding a big ring of old keys.
+Look: a young woman in a long simple medieval dress with a high collar and a shawl over her shoulders; long hair in a loose braid; the end of the braid and the hem of the dress dissolve into soft wisps of mist, no feet visible. A kind, slightly sad face drawn simply, eyes half-closed.
+She is a ghost: she glows by herself with pale lavender light; the inner areas are darker violet-indigo and look semi-transparent; the brightest pale lavender-white is on the edges of the hair, the shoulders and the keys.
+
+Single isolated game sprite, the whole figure visible and centered, nothing else in the image: no ground, no water, no pier.
+Background: perfectly flat solid pure green #00FF00 (or real transparency), no shadow, no gradient.
+Big clear silhouette with large pixel clusters: the sprite will be downscaled to 96x128 pixels, so avoid tiny details.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: lavender, soft violet, indigo, deep navy, a touch of pale blue-white for the brightest glow. No red, no orange, no green on the character.
+Lighting: she is her own light source; a thin cold moonlight rim on the right edges.
+Mood: quiet, melancholic, tender; sad but never scary, suitable for all ages.
+Forbidden: text, letters, logos, watermarks, blood, skulls, skeletons, empty eye sockets, horror faces, chains on the body, crosses, religious symbols.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `env_shop_back` — Лавка Брука: задняя стена с окном
+Слой 640×360, непрозрачный. Окно на залив и замок — по центру (в телефонном кадре), полки уходят к краям панорамы. Нижняя четверть — пустой пол: перед ним встанут Брук и прилавок. Из 1536×1024 берётся середина по высоте (~84 %).
+
+```
+Create a pixel art background for a 2D game: the inside of a gnome trader's shop carved into a sea cliff, at night. Landscape image 1536x1024.
+
+Straight-on front view of the back wall, like a stage set. In the center, a big round window with small leaded panes; through it we see the night bay: a full moon, the ruined gothic castle Velmor on an island far away with a few amber windows, calm water with a moonlit path. Around the window: rough rock walls with thick wooden beams; crooked wooden shelves on the left and right full of glass jars (some with faintly glowing teal-green and blue contents), bottles, coils of fishing line, a few hanging dried fish, nets and cork floats on hooks, old lanterns and burning candles with warm amber light; a hanging brass scale.
+The lower quarter of the image is a plain dark wooden floor and the base of the wall with nothing on it (a counter will be placed in front later). No characters, no counter, no table.
+The whole image is filled, no empty areas. Keep the main composition in the middle 60% of the width; the left and right edges just continue the shelves. Keep important things away from the top and bottom 8% of the image.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: warm wood browns, amber candle light, dark rock greys; deep night blues and cobalt in the window and in the shadows; a teal-green glow in a few jars. No crimson.
+Lighting: warm candle light from the shelves, cold blue moonlight through the window onto the middle of the room; shadows go into deep navy, never pure black.
+Mood: a cozy, cluttered, warm hideout on a cold night; cozy dark fantasy, like a 1980s fantasy book illustration rendered as a pixel art game.
+Forbidden: text, letters, numbers, labels on jars, signs, logos, watermarks, blood, skulls, crosses, religious symbols.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `env_shop_counter` — Лавка Брука: прилавок
+Слой 640×128, низ — край экрана сцены. Середина столешницы пустая: на неё кладётся улов при продаже, с неё сыплются монеты (GDD §9). Используется нижние ~30 % картинки.
+
+```
+Create a pixel art foreground layer for a 2D game: the wooden counter of a gnome trader's shop, seen straight from the front. Landscape image 1536x1024.
+
+A long, thick, old wooden counter that spans the entire width of the image from the left edge to the right edge. Its top is a heavy plank with worn edges and a few nicks; the front is made of vertical dark boards with iron bands and rivets. Small things stand only near the ends of the counter top: on the left, a brass balance scale and a small stack of silver coins; on the right, a candle in an iron holder with a warm amber flame and a small jar with a glowing teal-green moth. The middle 60% of the counter top is empty.
+The counter occupies only the lower 30% of the image; its bottom is cut by the bottom edge of the image.
+Everything that is not part of this layer is perfectly flat solid magenta #FF00FF (or real transparency). No characters, no wall, no shelves.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: warm wood browns, dark iron, brass and amber candle light, deep navy shadows; one small teal-green glow. No crimson.
+Lighting: warm candle light from the right end and from above; shadows go into deep navy, never pure black.
+Mood: cozy, cluttered, warm.
+Forbidden: text, letters, numbers, signs, price tags, logos, watermarks, skulls, crosses, religious symbols.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `env_moat_castle` — Ров Вельмора: стены замка
+Слой 640×360, низ — линия воды. Небо, луна и облака во рву общие с «Лунным берегом» (D-026): верхние 35 % картинки — пустое небо, между башнями — просвет для луны. Проём ворот тёмный, не сквозной. Воду не рисовать — она отдельным слоем. Используются нижние ~84 % картинки.
+
+```
+Create a pixel art parallax background layer for a 2D game: the walls of the half-sunken gothic castle Velmor seen up close from its flooded moat. Landscape image 1536x1024.
+
+Massive dark stone walls rise straight out of the water and span the whole width of the image, from the left edge to the right edge. Two round towers stand near the left and right edges; between them a lower curtain wall with battlements. In the center of the wall, a huge pointed arched gateway, half under water, with a broken raised iron portcullis; the gateway opening is filled with the deep dark navy shadow of the gate passage, it is NOT see-through. Narrow arched windows, a few of them still glowing warm amber; ivy and moss hanging from the battlements, wet dark stains near the waterline, cold mist at the base.
+Composition: the walls occupy only the LOWER 65% of the image; the upper 35% of the image is empty sky. The tops of the two towers reach up to about 35% from the top, the battlements of the curtain wall are lower, at about 50% from the top, so there is a wide gap of empty sky in the middle (the moon will be placed there later). The bottom edge of the image is the waterline: a straight horizontal cut, and NO water is drawn.
+Everything that is not part of this layer is perfectly flat solid magenta #FF00FF (or real transparency). The whole sky above the walls and between the towers is flat magenta. No moon, no clouds, no characters.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: cool stone greys, night blues, cobalt, deep navy; moss and ivy greens; warm amber only in a few windows. No crimson.
+Lighting: full moon key light from the upper right gives a thin cold blue-white rim light on right and top edges; shadows go into deep navy, never pure black.
+Mood: quiet, melancholic, cozy dark fantasy, like a 1980s dark fantasy book cover rendered as a pixel art game.
+Forbidden: text, letters, logos, watermarks, blood, skulls, scary gargoyles, crosses on the towers or anywhere, religious symbols, flags with emblems.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `env_moat_water` — Ров Вельмора: вода
+Слой 640×300, непрозрачный, от линии воды вниз. Темнее и зеленее, чем в заливе. Рябь и лунную дорожку оживит шейдер воды (Э3.4). Используется верхние ~70 % картинки.
+
+```
+Create a pixel art background layer for a 2D game: the still dark water of a flooded castle moat at night, seen from slightly above. Landscape image 1536x1024.
+
+The whole image is water: no shore, no walls, no sky. Calm, almost still water in deep navy and dark teal-green, darker toward the bottom. In the upper part, long soft reflections of dark castle walls broken by ripples and two or three warm amber reflections of lit windows; a shimmering pale blue moonlit path in the middle going down. Thin horizontal ripple lines, a few floating leaves, a few faint green glowing dots of tiny water creatures.
+The image is fully filled, no empty areas.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: deep navy, cobalt, dark teal-green, pale blue moon highlights; tiny amber reflections only. No crimson.
+Lighting: moonlight from above; shadows go into deep navy, never pure black.
+Mood: quiet, still, mysterious, cozy dark fantasy.
+Forbidden: text, letters, logos, watermarks, blood, skulls, creatures, characters, boats.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `env_moat_ledge` — Ров Вельмора: обломки ворот (место рыбалки)
+Холст 256×160, привязка — низ (линия воды). Во рву Ирвен сидит не на причале, а на обломках рухнувших ворот: тот же спрайт idle, ноги свешены с правого края. Фонарь — на погнутом пруте решётки.
+
+```
+Create a pixel art game sprite: a fishing spot made of the fallen stones of a castle gate in a flooded moat. Landscape image 1536x1024.
+
+Side view. A low pile of huge fallen carved stone blocks sticking out into the water from the left, forming a flat top ledge about one third of the image height above the bottom. The right end of the ledge is a clean flat block edge (an old wizard will sit there with his legs hanging down). On the left part of the ledge, a bent iron bar from a broken gate grille with an old iron lantern hanging from it, glowing warm amber. Moss, ivy and small ferns in the cracks, wet dark stones near the bottom. The bottom of the stones is a straight horizontal waterline at the bottom edge of the image; NO water is drawn.
+The ledge spans about 80% of the image width.
+
+Single isolated game sprite, nothing else in the image: no characters, no boat, no castle, no sky.
+Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow, no gradient.
+Big clear silhouette with large pixel clusters: the sprite will be downscaled to 256x160 pixels.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: cool stone greys, deep navy, moss greens, dark iron; warm amber only in the lantern and its glow on nearby stones. No crimson.
+Lighting: full moon key light from the upper right gives a thin cold blue-white rim light on right and top edges; shadows go into deep navy, never pure black. A small warm lantern glow on the left.
+Mood: quiet, melancholic, cozy dark fantasy, like a 1980s dark fantasy book cover rendered as a pixel art game.
+Forbidden: text, letters, logos, watermarks, blood, skulls, crosses, religious symbols, carved faces.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `prop_boat` — Лодка (починенная)
+Холст 128×48, привязка — низ (линия воды), нос вправо. Ставится у обломков ворот во рву, плывёт по карте. Кот на носу — тот же спрайт `char_cat_idle` поверх лодки (GDD §13.1, D-026).
+
+```
+Create a pixel art game sprite of a small old wooden rowboat. Landscape image 1536x1024.
+
+Side view, the bow (front) pointing RIGHT and slightly raised, the stern on the left. A short, wide rowboat made of overlapping dark weathered planks, freshly repaired: a few lighter new planks and patches with visible nails, a rope band along the rim. Two oars resting inside along the boat, a coiled rope, a small iron ring on the bow. The boat is empty: no people, no animals.
+The hull is drawn down to a straight horizontal waterline; the part below the waterline is NOT drawn.
+
+Single isolated game sprite, centered, the whole boat visible, nothing else in the image: no water, no reflection.
+Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow, no gradient.
+Big clear silhouette with large pixel clusters: the sprite will be downscaled to 128x48 pixels.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: dark weathered wood browns, a few lighter new planks, dark iron, rope beige-brown, deep navy shadows. No crimson.
+Lighting: full moon key light from the upper right gives a thin cold blue-white rim light on right and top edges; shadows go into deep navy, never pure black.
+Mood: quiet, cozy dark fantasy.
+Forbidden: text, letters, logos, watermarks, blood, skulls, crosses, religious symbols.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `env_moat_foreground` — Ров Вельмора: передний план
+Слой 640×240, привязка — низ. Заполнены только нижние углы, середина свободна: там зона заброса и вываживания. Используется нижние ~56 % картинки.
+
+```
+Create a pixel art foreground parallax layer for a 2D game: the near edge of a flooded castle moat at night. Landscape image 1536x1024.
+
+Only the bottom left and bottom right corners are filled. Bottom left: a broken carved stone column lying on its side and a few square fallen stones with moss, a couple of water lily pads with a small closed pale flower. Bottom right: a heap of tumbled wall blocks with ivy, tall reeds and cattails leaning inward, one lily pad glowing faint jade green. The middle 60% of the width stays empty.
+Everything sits in the lower 55% of the image; the objects are cut by the bottom edge of the image.
+Everything that is not part of this layer is perfectly flat solid magenta #FF00FF (or real transparency). No water surface, no sky, no characters.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: dark stone greys, deep navy, mossy and forest greens, a touch of jade glow; the foreground is darker than the scene behind it. No crimson.
+Lighting: a thin cold moonlight rim on the top edges; the rest are dark silhouettes.
+Mood: quiet, melancholic, cozy dark fantasy, like a 1980s dark fantasy book cover rendered as a pixel art game.
+Forbidden: text, letters, logos, watermarks, blood, skulls, crosses, religious symbols, carved faces.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `ui_bait_icons` — Наживки, лист из 5 кадров
+Лист 160×32 (5 кадров по 32×32). Порядок — GDD §8.3: червяк, светлячок, лунный мотыль, мох с руин, звёздная крошка.
+
+```
+Create a pixel art game item icon sheet: five fishing baits. Landscape image 1536x1024.
+
+Exactly FIVE separate items in one horizontal row, evenly spaced with wide gaps, all about the same size. From left to right:
+1) an earthworm: a plump pinkish-brown worm curled into a loose S shape;
+2) a firefly: a small round beetle with folded dark wings and a big glowing warm amber-yellow tail;
+3) a moon moth: a pale moth seen from above with wide pale blue-white wings and soft lavender eye-spots;
+4) ruin moss: a small clump of bright green moss growing on a broken piece of grey carved stone;
+5) star dust: a small corked glass vial full of tiny glittering pale blue and white sparkles, glowing softly.
+
+Nothing else in the image. Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow, no gradient.
+Each item will be downscaled to 32x32 pixels: bold simple shapes, big pixel clusters, a dark navy outline.
+
+Style: 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no text.
+Palette: navy outlines and shadows; pinkish-brown, amber, pale blue, lavender, moss green, stone grey. No crimson.
+Lighting: a thin cold moonlight highlight on the upper right of each item.
+Forbidden: text, letters, numbers, labels, logos, watermarks, blood.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `ui_upgrade_icons` — Улучшения, лист из 6 кадров
+Лист 192×32 (6 кадров по 32×32), исходник — сетка 3×2. Порядок — ветки GDD §8.2: удилище, катушка, фонарь, корзина, сеть, лодка.
+
+```
+Create a pixel art game icon sheet: six upgrade icons for a fishing workshop. Landscape image 1536x1024.
+
+Exactly SIX separate items in a grid of 3 columns and 2 rows, evenly spaced with wide gaps, all about the same size.
+Top row, left to right: 1) a fishing rod: a wooden rod with brass rings drawn diagonally from the bottom left to the top right, a short line with a small float hanging from the tip; 2) a fishing reel: a round brass and dark iron reel with a small handle, front view; 3) an old iron lantern with a warm amber flame and a carrying ring on top.
+Bottom row, left to right: 4) a woven wicker fishing basket with a lid and a leather strap; 5) a folded fishing net with round cork floats; 6) a small wooden rowboat in side view, bow to the right.
+
+Nothing else in the image. Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow, no gradient.
+Each item will be downscaled to 32x32 pixels: bold simple shapes, big pixel clusters, a dark navy outline.
+
+Style: 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no text.
+Palette: navy outlines and shadows; wood browns, brass and amber, dark iron, wicker tan, cork. No crimson.
+Lighting: a thin cold moonlight highlight on the upper right of each item.
+Forbidden: text, letters, numbers, labels, logos, watermarks, blood, hooks with bait.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `ui_nav_icons` — Иконки навигации, лист из 5 кадров
+Лист 160×32 (5 кадров по 32×32). Нижняя полоса причала (GDD §16.2): Корзина, Книга вод, Лавка, Карта, Настройки.
+
+```
+Create a pixel art game icon sheet: five navigation buttons icons for a cozy fishing game. Landscape image 1536x1024.
+
+Exactly FIVE separate icons in one horizontal row, evenly spaced with wide gaps, all about the same size. From left to right:
+1) a woven wicker fish basket, front view, with a fish tail sticking out of it;
+2) a thick closed old book with a dark blue leather cover, brass corners and a small fish shape embossed on the cover;
+3) a small round hut door set into a rock, with a warm glowing round window and a little hanging lantern (a gnome's shop);
+4) a half-unrolled old parchment map with a dotted path and a tiny drawn boat;
+5) a dark iron cogwheel with a brass center.
+
+Nothing else in the image. Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow, no gradient.
+Each icon will be downscaled to 32x32 pixels: bold simple shapes, big pixel clusters, a dark navy outline.
+
+Style: 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no text.
+Palette: navy outlines and shadows; wicker tan, dark blue leather, brass and amber, rock grey, warm peach-tan parchment, dark iron. No crimson.
+Lighting: a thin cold moonlight highlight on the upper right of each icon.
+Forbidden: text, letters, numbers, logos, watermarks, crosses, religious symbols.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `ui_panel_frame` — Рамка панели (9-slice)
+Холст 96×96 для `NinePatchRect`, поля 24 px со всех сторон: углы с орнаментом не тянутся, стороны и пергамент в середине тянутся (лучше плиткой). Пергамент — ряды skin/wood (D-024). Основа всех окон: корзина, лавка, календарь, настройки, диалог Эльсы.
+
+```
+Create a pixel art UI panel for a 2D game: an empty square window frame, front view. Square image 1024x1024.
+
+The frame fills almost the whole image, leave a thin magenta margin around it. Frame: dark wrought iron, about 9% of the panel width thick, with one rivet in the middle of each side and small curled leaf-and-wave ornaments in the four corners; a thin cold blue moonlit highlight on the top and right edges of the iron. Inside: one big empty area of aged parchment in warm peach-tan (close to #e0a982) with darker tan worn edges and corners (close to #b88a52) and a very subtle even texture, no stains in the middle.
+Between the corners, the four sides of the frame are plain and uniform: the panel will be stretched as a 9-slice, the corners stay and the sides repeat.
+Absolutely no text, letters, numbers or symbols anywhere.
+
+Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow, no gradient.
+Clean large pixel clusters: the panel will be downscaled to 96x96 pixels.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: dark iron greys and navy, cobalt, warm peach-tan parchment, dark tan. No crimson, no bright yellow, no pure white.
+Lighting: moon key light from the upper right, shadows go into deep navy, never pure black.
+Mood: quiet, cozy dark fantasy.
+Forbidden: text, letters, logos, watermarks, skulls, crosses, religious symbols.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `ui_button` — Кнопка, 2 состояния
+Лист 128×24 (2 кадра по 64×24): обычная и нажатая. `StyleBoxTexture`, поля 8 px. Надпись — `Label` в Godot (локализация). Неактивная — затемнение через modulate.
+
+```
+Create a pixel art UI sheet for a 2D game: two states of the same empty wide button. Landscape image 1536x1024.
+
+Exactly TWO buttons side by side with a wide gap, the same size, each about 2.7 times wider than tall (a wide rectangle with small cut corners).
+Left, normal: a dark wrought iron rim with a tiny rivet at each end; the face is aged parchment in warm peach-tan (close to #e0a982), slightly raised, with a lighter line along the top inner edge and darker tan (close to #b88a52) along the bottom inner edge; a thin cold blue moonlit highlight on the top of the iron rim.
+Right, pressed: the same button pushed in: the parchment face is darker tan, light and shadow are swapped (dark along the top inner edge), no moon highlight.
+Both faces are completely empty: no text, letters, numbers or icons.
+
+Nothing else in the image. Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow, no gradient.
+Clean large pixel clusters: each button will be downscaled to 64x24 pixels.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: dark iron greys and navy, warm peach-tan parchment, dark tan. No crimson, no bright yellow, no pure white.
+Lighting: moon key light from the upper right, shadows go into deep navy, never pure black.
+Forbidden: text, letters, numbers, logos, watermarks, skulls, crosses, religious symbols.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `ui_action_button` — Большая кнопка действия
+Холст 64×64, центр. Внизу по центру причала (GDD §16.2). Середина пустая: иконку действия и дугу прогресса (`TextureProgressBar`, радиальный) Godot кладёт поверх.
+
+```
+Create a pixel art UI element for a 2D game: a big round action button, front view. Square image 1024x1024.
+
+A circular button filling most of the image: a thick dark wrought iron ring with eight small rivets evenly around it and a thin cold blue moonlit highlight on its upper right; inside, a slightly domed deep navy-blue glass disc with a soft pale blue glow in the center, like moonlight seen through water, and one small bright highlight in the upper right. The center of the disc is empty: an icon will be placed on it later.
+Absolutely no text, letters, numbers or symbols anywhere.
+
+Single isolated UI element, centered, nothing else in the image.
+Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow, no gradient.
+Big clean shapes: the button will be downscaled to 64x64 pixels.
+
+Style: 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no text.
+Palette: dark iron greys, navy, cobalt, pale blue glow. No crimson, no warm colors.
+Lighting: moon key light from the upper right, shadows go into deep navy, never pure black.
+Forbidden: text, letters, numbers, logos, watermarks, skulls, crosses, religious symbols.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `ui_tension_frame` — Рамка шкалы натяжения
+Холст 20×160, центр. Справа на причале во время вываживания (GDD §5.4). Внутри пустой тёмный паз: заливку рисует `TextureProgressBar` снизу вверх, цвета зон — в Godot.
+
+```
+Create a pixel art UI element for a 2D game: an empty vertical gauge for fishing line tension, front view. Portrait image 1024x1536.
+
+A very tall and narrow gauge standing in the center and filling the full image height, about 8 times taller than wide: a dark wrought iron frame with a small round rivet cap at the top and at the bottom end and a few rivets along the sides; inside, one long empty dark navy slot (the game draws the fill later). A thin cold blue moonlit highlight on the right edge of the iron. Leave magenta on the left and right.
+Absolutely no text, numbers, marks or symbols.
+
+Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow, no gradient.
+Clean large pixel clusters: the gauge will be downscaled to 20x160 pixels.
+
+Style: 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no text.
+Palette: dark iron greys, navy, cobalt, pale blue highlight. No crimson, no warm colors.
+Forbidden: text, letters, numbers, logos, watermarks, skulls, crosses, religious symbols.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `ui_moon_phases` — 8 фаз луны, HUD
+Лист 128×16 (8 кадров по 16×16), иконка луны в HUD рядом с таймером. Исходник — сетка 4×2. Порядок — GDD §7.1: новолуние, растущий серп, первая четверть, растущая, полнолуние, убывающая, последняя четверть, убывающий серп. Тёмная часть диска — тёмно-синяя с тонким ободком, чтобы новолуние было видно. Временный исходник агент собирает из `env_moon_full` скриптом `tools/art/moon_phases_src.py` (D-028).
+
+```
+Create a pixel art game icon sheet: the eight phases of the moon. Landscape image 1536x1024.
+
+Exactly EIGHT moon discs of the same size in a grid of 4 columns and 2 rows, evenly spaced with wide gaps. Every disc is the same pale moon with a few soft grey-blue craters; the unlit part of every disc is dark navy blue with a thin faint blue rim, so all eight are full circles of the same size.
+Top row, left to right: 1) new moon: a fully dark disc with only the faint rim; 2) waxing crescent: a thin lit sliver on the RIGHT side; 3) first quarter: the right half lit; 4) waxing gibbous: lit except a thin dark crescent on the left.
+Bottom row, left to right: 5) full moon: fully lit; 6) waning gibbous: lit except a thin dark crescent on the right; 7) last quarter: the left half lit; 8) waning crescent: a thin lit sliver on the LEFT side.
+
+Nothing else in the image: no stars, no clouds, no glow halo. Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow, no gradient.
+Each disc will be downscaled to 16x16 and 32x32 pixels: simple shapes, a clean sharp edge between light and dark.
+
+Style: 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no text.
+Palette: pale moon white and soft blue-grey for the lit part, deep navy for the dark part. No warm colors.
+Forbidden: text, letters, numbers, faces on the moon, logos, watermarks, religious symbols.
+Use the attached reference image only for style, palette and lighting, not for composition.
+```
+
+### `ui_logo_emblem` — Логотип: эмблема без текста
+Холст 160×128, центр. Только эмблема: генераторы портят кириллицу, а название ещё и локализуется. Надпись «Лунный улов» — `Label` пиксельным шрифтом под эмблемой (шрифт — Э5.1), D-027. Экран загрузки и титул (GDD §16.1).
+
+```
+Create a pixel art game logo emblem with no text. Square image 1024x1024.
+
+A badge-like round composition: a big glowing full moon; in front of its lower half, the dark silhouette of the ruined gothic castle Velmor on a small rocky island with two warm amber windows; calm water in front with a bright moonlit path. A magical glowing fish (pale blue with soft jade-green glowing spots) leaps in a graceful arc across the face of the moon; a single thin fishing line curves up to it from the lower left. The whole emblem is wrapped in an oval of soft cold mist at its edges.
+
+Single isolated emblem, centered, nothing else in the image. Background: perfectly flat solid magenta #FF00FF (or real transparency), no shadow, no gradient.
+Big bold shapes: the emblem will be downscaled to 160x128 pixels, so keep it simple and readable.
+
+Style: detailed 16-bit pixel art, crisp square pixels on a strict grid, no anti-aliasing, no blur, no soft gradients, no noise, no text.
+Palette: night blues, cobalt, pale moon white, cool stone greys; a jade-green glow on the fish; warm amber only in two windows. No crimson.
+Lighting: the moon is the light source: cold blue-white rim light on the castle, the fish and the waves.
+Mood: quiet, melancholic, cozy dark fantasy, like a 1980s dark fantasy book cover rendered as a pixel art game.
+Forbidden: text, letters, numbers, logos of other brands, watermarks, blood, skulls, crosses on the spires or anywhere, religious symbols.
 Use the attached reference image only for style, palette and lighting, not for composition.
 ```

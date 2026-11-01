@@ -1,0 +1,15 @@
+{
+  "_doc": "Титул (GDD §16.1) поверх раскладки shore: луна неба скрыта (луна — в эмблеме), эмблема без текста ×2 (D-027), название — Label пиксельным шрифтом под ней, статус луны и сетей, «Коснись, чтобы начать». Текст ВРЕМЕННЫЙ (шрифт — Э5.1).",
+  "canvas": [640, 640],
+  "phone_x": 140,
+  "layers": [
+    {"include": "shore", "skip": ["env_moon_full"]},
+    {"veil": [4, 6, 12, 140]},
+    {"id": "ui_logo_emblem", "at": [320, 176], "scale": 2, "center": true},
+    {"text": "Лунный улов", "at": [320, 316], "size": 26, "bold": true, "align": "center", "color": "#e8f2ff"},
+    {"id": "ui_moon_phases", "frame": 3, "at": [214, 512]},
+    {"text": "До полнолуния 2 ч 15 мин", "at": [234, 512], "size": 11, "bold": true, "color": "#e8f2ff"},
+    {"text": "Сети: 3 из 4", "at": [320, 534], "size": 11, "bold": true, "align": "center", "color": "#e8f2ff"},
+    {"text": "Коснись, чтобы начать", "at": [320, 584], "size": 13, "bold": true, "align": "center", "color": "#ffc95a"}
+  ]
+}

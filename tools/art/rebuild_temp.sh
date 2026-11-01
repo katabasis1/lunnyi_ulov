@@ -51,3 +51,28 @@ python3 tools/art/compose_mock.py fishing docs/art_mocks/fishing_mock_latest.png
 python3 tools/art/compose_mock.py catch   docs/art_mocks/catch_mock_latest.png   --scale 2
 python3 tools/art/compose_mock.py catch_legendary docs/art_mocks/catch_legendary_mock_latest.png --scale 2
 python3 tools/art/creature_sheet.py docs/art_mocks/creatures_overview_latest.png
+# --- Пакет 4 (Э0.4.5) ---
+$P char_brook_idle      "$SRC/batch4/char_brook_idle.png"
+$P char_elsa_idle       "$SRC/batch4/char_elsa_idle.png"
+$P env_shop_back        "$SRC/batch4/env_shop_back.png"
+$P env_shop_counter     "$SRC/batch4/env_shop_counter.png"
+$P env_moat_castle      "$SRC/batch4/env_moat_castle.png"      --crop 0,0,1,0.985
+$P env_moat_water       "$SRC/batch4/env_moat_water.png"
+$P env_moat_ledge       "$SRC/batch4/env_moat_ledge.png"
+$P prop_boat            "$SRC/batch4/prop_boat.png"
+$P env_moat_foreground  "$SRC/batch4/env_moat_foreground.png"
+$P ui_bait_icons        "$SRC/batch4/ui_bait_icons.png"
+$P ui_upgrade_icons     "$SRC/batch4/ui_upgrade_icons.png"
+$P ui_nav_icons         "$SRC/batch4/ui_nav_icons.png"
+$P ui_panel_frame       "$SRC/batch4/ui_panel_frame.png"
+$P ui_button            "$SRC/batch4/ui_button.png"
+$P ui_action_button     "$SRC/batch4/ui_action_button.png"
+$P ui_tension_frame     "$SRC/batch4/ui_tension_frame.png"
+$P ui_logo_emblem       "$SRC/batch4/ui_logo_emblem.png"
+# фазы луны: временный исходник строится из env_moon_full (D-028); ChatGPT-финал листа идёт через --incoming
+python3 tools/art/moon_phases_src.py "$SRC/batch4/ui_moon_phases.png"
+$P ui_moon_phases       "$SRC/batch4/ui_moon_phases.png"
+$P ui_moon_phases_lg    "$SRC/batch4/ui_moon_phases.png"
+for m in moat hud shop shop_workshop elsa title moon_calendar; do
+  python3 tools/art/compose_mock.py $m docs/art_mocks/${m}_mock_latest.png --scale 2
+done
